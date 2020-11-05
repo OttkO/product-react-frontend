@@ -13,5 +13,6 @@ The standard npm things.
 ```
 npm install
 npm install bootstrap --save
+npm install react-router-dom
 npm start
 ```
