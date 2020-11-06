@@ -8,6 +8,7 @@ class ProductComponent extends React.Component {
         this.state = {
             products:[]
         }
+        this.addProduct = this.addProduct.bind(this);
     }
 
     componentDidMount(){
@@ -16,10 +17,17 @@ class ProductComponent extends React.Component {
         });
     }
 
+    addProduct() {
+        this.props.history.push('/add-product');
+    }
+
     render (){
         return (
             <div>
                 <h1 className = "text-center"> Product List</h1>
+                <div className = "row">
+                    <button className = "btn btn-primary" onClick ={this.addProduct}> Add Product </button>  
+                </div>
                 <table className = "table table-hover">
                     <thead>
                         <tr>

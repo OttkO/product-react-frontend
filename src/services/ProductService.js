@@ -7,6 +7,9 @@ class ProductService {
     getProducts() {
        return axios.get(PRODUCTS_REST_API_URL);
     }
+    createProduct(product) {
+        return axios.post(PRODUCTS_REST_API_URL, product);
+    }
 }
 
 export default new ProductService()
