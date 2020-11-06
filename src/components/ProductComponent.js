@@ -10,6 +10,7 @@ class ProductComponent extends React.Component {
         }
         this.addProduct = this.addProduct.bind(this);
         this.editProduct = this.editProduct.bind(this);
+        this.deleteProduct = this.deleteProduct.bind(this);
     }
 
     componentDidMount(){
@@ -24,6 +25,12 @@ class ProductComponent extends React.Component {
 
     editProduct(id) {
         this.props.history.push(`/update-product/${id}`);
+    }
+
+    deleteProduct(id){
+        ProductService.deleteProduct(id).then( res => {
+            this.setState({products: this.state.products.filter(product => product.id !== id)});
+        });
     }
 
     render (){
@@ -52,7 +59,8 @@ class ProductComponent extends React.Component {
                                      <td> {product.category}</td>   
                                      <td> {product.description}</td>     
                                      <td>
-                                     <button onClick = {() => this.editProduct(product.id)} className="btn btn-info">Update</button>   
+                                     <button onClick = {() => this.editProduct(product.id)} className="btn btn-info">Update</button>
+                                     <button onClick = {() => this.deleteProduct(product.id)} className="btn btn-danger">Delete</button>   
                                      </td>
                                 </tr>
                             )
