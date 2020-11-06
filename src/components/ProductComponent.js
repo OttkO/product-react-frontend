@@ -23,7 +23,7 @@ class ProductComponent extends React.Component {
     }
 
     editProduct() {
-        this.props.history.push(`/update-product/{id}`);
+        this.props.history.push('/update-product/{id}');
     }
 
     render (){

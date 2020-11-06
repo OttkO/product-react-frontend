@@ -72,7 +72,7 @@ class UpdateProductComponent extends Component {
                                          value = {this.state.descriptipn} onChange={this.changeDescriptionHandler}/>                       
                                     </div>
 
-                                    <button className = "btn btn-success" onClick = {this.saveProduct}>Save</button>
+                                    <button className = "btn btn-success" onClick = {this.saveProduct}>Update</button>
                                     <button className = "btn btn-danger" onClick = {this.cancel} style = {{marginLeft : "10px"}} >Cancel</button>
                                 </form>
 
