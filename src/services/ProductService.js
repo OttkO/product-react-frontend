@@ -13,6 +13,9 @@ class ProductService {
     getProductById(id) {
         return axios.get(PRODUCTS_REST_API_URL + '/' + id);
     }
+    updateProduct(product, productId) {
+        return axios.put(PRODUCTS_REST_API_URL +  '/' + productId, product);
+    }
 }
 
 export default new ProductService()

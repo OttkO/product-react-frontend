@@ -9,7 +9,7 @@ class UpdateProductComponent extends Component {
             id: this.props.match.params.id,
             name: '',
             category: '',
-            descriptipn: ''        
+            description: ''        
         }
 
         this.changeNameHandler = this.changeNameHandler.bind(this);
@@ -28,7 +28,7 @@ class UpdateProductComponent extends Component {
     }
 
     changeDescriptionHandler= (event) => {
-        this.setState({descriptipn : event.target.value});
+        this.setState({description : event.target.value});
     }
 
     componentDidMount() {
@@ -45,8 +45,12 @@ class UpdateProductComponent extends Component {
     updateProduct = (e) => {
         e.preventDefault();
 
-        let product = {name : this.state.name, category: this.state.category, description: this.state.descriptipn};
+        let product = {name : this.state.name, category: this.state.category, description: this.state.description};
         console.log('product' + JSON.stringify(product));
+
+        ProductService.updateProduct(product, this.state.id).then(res => {
+            this.props.history.push("/products");
+        });
 
     }
 
@@ -77,7 +81,7 @@ class UpdateProductComponent extends Component {
                                     <div className = "form-group">
                                         <label>Product Description:</label>
                                         <input placeholder = "Product Description" name="description" className = "form-control"
-                                         value = {this.state.descriptipn} onChange={this.changeDescriptionHandler}/>                       
+                                         value = {this.state.description} onChange={this.changeDescriptionHandler}/>                       
                                     </div>
 
                                     <button className = "btn btn-success" onClick = {this.updateProduct}>Update </button>
