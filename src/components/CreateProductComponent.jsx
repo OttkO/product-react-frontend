@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ProductService from '../services/ProductService';
 
 class CreateProductComponent extends Component {
     constructor(props) {
@@ -34,6 +35,10 @@ class CreateProductComponent extends Component {
 
         let product = {name : this.state.name, category: this.state.category, description: this.state.descriptipn};
         console.log('product' + JSON.stringify(product));
+
+        ProductService.createProduct(product).then(res => {
+            this.props.history.push("/products");
+        });
 
     }
 
