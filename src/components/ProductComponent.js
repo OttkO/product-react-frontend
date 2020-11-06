@@ -9,6 +9,7 @@ class ProductComponent extends React.Component {
             products:[]
         }
         this.addProduct = this.addProduct.bind(this);
+        this.editProduct = this.editProduct.bind(this);
     }
 
     componentDidMount(){
@@ -19,6 +20,10 @@ class ProductComponent extends React.Component {
 
     addProduct() {
         this.props.history.push('/add-product');
+    }
+
+    editProduct() {
+        this.props.history.push(`/update-product/{id}`);
     }
 
     render (){
@@ -34,6 +39,7 @@ class ProductComponent extends React.Component {
                             <td> Name </td>
                             <td> Category </td>
                             <td> Description </td>
+                            <td> Actions </td>
                         </tr>
 
                     </thead>
@@ -45,6 +51,9 @@ class ProductComponent extends React.Component {
                                      <td> {product.name}</td>   
                                      <td> {product.category}</td>   
                                      <td> {product.description}</td>     
+                                     <td>
+                                     <button onClick = {() => this.editProduct(product.id)} className="btn btn-info">Update</button>   
+                                     </td>
                                 </tr>
                             )
                         }
