@@ -6,6 +6,7 @@ class UpdateProductComponent extends Component {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             name: '',
             category: '',
             descriptipn: ''        
@@ -14,7 +15,7 @@ class UpdateProductComponent extends Component {
         this.changeNameHandler = this.changeNameHandler.bind(this);
         this.changeCategoryHandler = this.changeCategoryHandler.bind(this);
         this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
-        this.saveProduct = this.saveProduct.bind(this);
+        this.updateProduct = this.updateProduct.bind(this);
         this.cancel = this.cancel.bind(this);
     }
     
@@ -30,15 +31,22 @@ class UpdateProductComponent extends Component {
         this.setState({descriptipn : event.target.value});
     }
 
-    saveProduct = (e) => {
+    componentDidMount() {
+        ProductService.getProductById(this.state.id).then(res => {
+            let product = res.data;
+            this.setState({
+                name: product.name,
+                category: product.category,
+                description : product.description
+            });
+        })
+    }
+
+    updateProduct = (e) => {
         e.preventDefault();
 
         let product = {name : this.state.name, category: this.state.category, description: this.state.descriptipn};
         console.log('product' + JSON.stringify(product));
-
-        ProductService.createProduct(product).then(res => {
-            this.props.history.push("/products");
-        });
 
     }
 
@@ -72,7 +80,7 @@ class UpdateProductComponent extends Component {
                                          value = {this.state.descriptipn} onChange={this.changeDescriptionHandler}/>                       
                                     </div>
 
-                                    <button className = "btn btn-success" onClick = {this.saveProduct}>Update</button>
+                                    <button className = "btn btn-success" onClick = {this.updateProduct}>Update </button>
                                     <button className = "btn btn-danger" onClick = {this.cancel} style = {{marginLeft : "10px"}} >Cancel</button>
                                 </form>
 

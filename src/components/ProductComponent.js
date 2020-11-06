@@ -22,8 +22,8 @@ class ProductComponent extends React.Component {
         this.props.history.push('/add-product');
     }
 
-    editProduct() {
-        this.props.history.push('/update-product/{id}');
+    editProduct(id) {
+        this.props.history.push(`/update-product/${id}`);
     }
 
     render (){
