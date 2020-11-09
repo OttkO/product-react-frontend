@@ -11,6 +11,7 @@ class ProductComponent extends React.Component {
         this.addProduct = this.addProduct.bind(this);
         this.editProduct = this.editProduct.bind(this);
         this.deleteProduct = this.deleteProduct.bind(this);
+        this.viewProduct = this.viewProduct.bind(this);
     }
 
     componentDidMount(){
@@ -31,6 +32,10 @@ class ProductComponent extends React.Component {
         ProductService.deleteProduct(id).then( res => {
             this.setState({products: this.state.products.filter(product => product.id !== id)});
         });
+    }
+
+    viewProduct(id){
+        this.props.history.push(`/view-product/${id}`);
     }
 
     render (){
@@ -60,7 +65,8 @@ class ProductComponent extends React.Component {
                                      <td> {product.description}</td>     
                                      <td>
                                      <button onClick = {() => this.editProduct(product.id)} className="btn btn-info">Update</button>
-                                     <button onClick = {() => this.deleteProduct(product.id)} className="btn btn-danger">Delete</button>   
+                                     <button onClick = {() => this.deleteProduct(product.id)} className="btn btn-danger">Delete</button>
+                                     <button onClick = {() => this.viewProduct(product.id)} className="btn btn-info">View</button>   
                                      </td>
                                 </tr>
                             )
